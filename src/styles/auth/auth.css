@@ -1,0 +1,129 @@
+.login-container {
+  height: 100vh;
+}
+
+.login-form-container {
+    margin: 0 20px;
+}
+
+.logo-section {
+  flex: 1;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.welcome-text {
+  font-size: 24px;
+}
+
+.auth-container {
+    padding: 30px;
+    flex-grow: 1;
+}
+
+.form-section {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+}
+
+.form-title {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-subtitle {
+  margin-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-input {
+  width: 270px;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+}
+
+.forgot-link {
+  color: white;
+  font-size: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.submit-btn {
+  align-self: flex-end;
+  background-color: var(--bg-thired);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-primary);
+  width: 60px;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.action-btn {
+  background-color: var(--bg-fourth);
+  color: var(--text-white);
+  border: 1px solid var(--border-primary);
+  border-radius: 20px;
+  padding: 8px 20px;
+  cursor: pointer;
+  box-shadow: 0px 4px 4px 0px #00000040;
+
+}
+
+.forgot-container {
+  width: 310px;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+.forgot-message {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 576px) {
+    .form-section {
+        padding: 0;
+    }
+    
+}
