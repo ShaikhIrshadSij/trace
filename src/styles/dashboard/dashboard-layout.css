@@ -1,4 +1,4 @@
-.dashboard {
+.dashboard-layout {
   min-height: 100vh;
 }
 
@@ -213,6 +213,7 @@
 .inner-container {
   height: calc(100vh - 105px);
   overflow-y: auto;
+  color: var(--text-black);
 }
 
 /* Footer Styles */

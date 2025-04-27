@@ -5,6 +5,7 @@ import ForgotUserId from "../pages/auth/forgotUserId"
 import ForgotPassword from "../pages/auth/forgotPassword"
 import DashboardLayout from "../components/dashboard/DashboardLayout"
 import CompanyProfile from "../pages/dashboard/companyProfile"
+import Dashboard from "../pages/dashboard"
 
 const Navigations = () => {
   return (
@@ -18,7 +19,8 @@ const Navigations = () => {
 
       {/* DASHBOARD ROUTES */}
       <Route path="/" element={<DashboardLayout />}>
-      <Route index element={<Navigate to="company-profile" replace />} />
+      <Route index element={<Navigate to="dashboard" replace />} />
+      <Route path="dashboard" element={<Dashboard />} />
       <Route path="company-profile" element={<CompanyProfile />} />
       </Route>
       {/* catch-all route to redirect to "/" */}

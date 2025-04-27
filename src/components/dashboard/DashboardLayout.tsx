@@ -1,15 +1,17 @@
-import { Outlet } from 'react-router-dom';
-import '../../styles/dashboard/dashboard.css';
+import { Link, Outlet } from 'react-router-dom';
+import '../../styles/dashboard/dashboard-layout.css';
 import { useRef, useState } from 'react';
 import useClickOutside from '../../hooks/useClickOutside';
 
 interface SidebarItems {
     icon: string;
     label: string;
+    href: string;
 }
 
 interface DropdownItems {
     label: string;
+    href: string;
 }
 
 const DashboardLayout = () => {
@@ -20,25 +22,25 @@ const DashboardLayout = () => {
     useClickOutside(dropDownRef, () => setIsDropdownOpen(false))
 
     const sidebarItems: SidebarItems[] = [
-        { icon: '/images/sea.svg', label: '' },
-        { icon: '/images/dashboard.svg', label: 'Dashboard' },
-        { icon: '/images/subscription.svg', label: 'Subscription' },
-        { icon: '/images/user.svg', label: 'User' },
-        { icon: '/images/report.svg', label: 'Report' },
-        { icon: '/images/matrix.svg', label: 'Matrix' },
-        { icon: '/images/export-import.svg', label: 'Export-Import' },
-        { icon: '/images/token-management.svg', label: 'Token-Management' },
-        { icon: '/images/help.svg', label: 'Help' },
+        { icon: '/images/sea.svg', label: '', href: '/dashboard' },
+        { icon: '/images/dashboard.svg', label: 'Dashboard', href: '/dashboard' },
+        { icon: '/images/subscription.svg', label: 'Subscription', href: '/dashboard' },
+        { icon: '/images/user.svg', label: 'User', href: '/dashboard' },
+        { icon: '/images/report.svg', label: 'Report', href: '/dashboard' },
+        { icon: '/images/matrix.svg', label: 'Matrix', href: '/dashboard' },
+        { icon: '/images/export-import.svg', label: 'Export-Import', href: '/dashboard' },
+        { icon: '/images/token-management.svg', label: 'Token-Management', href: '/dashboard' },
+        { icon: '/images/help.svg', label: 'Help', href: '/dashboard' },
     ]
 
     const dropdownItems: DropdownItems[] = [
-        { label: 'Company Profile' },
-        { label: 'Role & User Master' },
-        { label: 'Shore Online' },
-        { label: 'Subscription History' },
-        { label: 'Help Centre' },
-        { label: 'Settings' },
-        { label: 'Logout' },
+        { label: 'Company Profile', href: '/company-profile' },
+        { label: 'Role & User Master', href: '' },
+        { label: 'Shore Online', href: '' },
+        { label: 'Subscription History', href: '' },
+        { label: 'Help Centre', href: '' },
+        { label: 'Settings', href: '' },
+        { label: 'Logout', href: '' },
     ]
 
     const toggleDropdown = () => {
@@ -50,7 +52,7 @@ const DashboardLayout = () => {
     }
 
     return (
-        <div className="dashboard d-flex">
+        <div className="dashboard-layout d-flex">
             {/* Left Sidebar */}
             <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
                 <div className="sidebar-header mobile-only">
@@ -63,9 +65,9 @@ const DashboardLayout = () => {
                     <button className="search-button"><i className="fa-solid fa-search"></i></button>
                 </div>
                 {sidebarItems.slice(0, -1).map((item, index) => (
-                    <div key={index} className={`sidebar-icon d-flex-center ${item.label === 'Dashboard' ? 'active' : ''}`}>
+                    <Link key={index} to={item.href} className={`sidebar-icon d-flex-center ${item.label === 'Dashboard' ? 'active' : ''}`}>
                         <img src={item.icon} alt={item.label} className="icon" />
-                    </div>
+                    </Link>
                 ))}
                 <div className="sidebar-help d-flex-column">
                     <img src={sidebarItems[sidebarItems.length - 1].icon} alt="Help" className="icon" />
@@ -102,7 +104,7 @@ const DashboardLayout = () => {
                             <div className="dropdown-menu" >
                                 {
                                     dropdownItems.map((item, index) => (
-                                        <div key={index} className="dropdown-item">{item.label}</div>
+                                        <Link key={index} to={item.href} className="dropdown-item">{item.label}</Link>
                                     ))
                                 }
                             </div>
