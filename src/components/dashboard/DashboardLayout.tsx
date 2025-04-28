@@ -2,6 +2,7 @@ import { Link, Outlet } from 'react-router-dom';
 import '../../styles/dashboard/dashboard-layout.css';
 import { useRef, useState } from 'react';
 import useClickOutside from '../../hooks/useClickOutside';
+import { useNavigationStore } from '../../libs/store/navigationStore';
 
 interface SidebarItems {
     icon: string;
@@ -15,6 +16,7 @@ interface DropdownItems {
 }
 
 const DashboardLayout = () => {
+    const { title, status, breadcrumb, isBackButtonVisible } = useNavigationStore();
     const dropDownRef = useRef<HTMLDivElement>(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -84,8 +86,31 @@ const DashboardLayout = () => {
                         <button className="hamburger-menu" onClick={toggleSidebar}>
                             <span className="hamburger-icon"><i className="fa-solid fa-bars"></i></span>
                         </button>
-                        <span className="back-arrow desktop-only"><i className="fa-solid fa-arrow-left"></i></span>
-                        <span className="header-title text-black fw-500">Company Profile</span>
+                        <div>
+                            <div className='d-flex-row'>
+                                {
+                                    isBackButtonVisible && (
+                                        <span className="back-arrow desktop-only"><i className="fa-solid fa-arrow-left"></i></span>
+                                    )
+                                }
+                                <div className='header-title-container d-flex'>
+                                    <span className="header-title text-black fw-500">{title}</span>
+                                    {
+                                        status && (
+                                            <div className="route-status">
+                                                <span className='status-circle'></span>
+                                                <span>{status}</span>
+                                            </div>
+                                        )
+                                    }
+                                </div>
+                            </div>
+                            <div className="breadcrumb d-flex-row">
+                                {breadcrumb?.map((item, index) => (
+                                    <span key={index} className="breadcrumb-item">{item}</span>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                     <div className="desktop-search-container desktop-only">
                         <input type="text" placeholder="Search" className="search-input" />

@@ -1,19 +1,20 @@
-import '../../styles/dashboard/dashboard.scss';
-import { Bar, ChartProps, Line } from "react-chartjs-2"
 import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
     BarElement,
+    CategoryScale,
+    Chart as ChartJS,
+    Legend,
+    LinearScale,
+    LineElement,
+    PointElement,
     Title,
     Tooltip,
-    Legend,
-} from "chart.js"
-import Tabs from '../../components/ui/Tabs';
-import { useState } from 'react';
+} from "chart.js";
+import { useEffect, useState } from 'react';
+import { Bar } from "react-chartjs-2";
 import TabPanel from '../../components/ui/TabPanel';
+import Tabs from '../../components/ui/Tabs';
+import { useNavigationStore } from '../../libs/store/navigationStore';
+import '../../styles/dashboard/dashboard.scss';
 
 interface DashboardAssets {
     icons: string;
@@ -58,6 +59,17 @@ interface PerfomingVessels {
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend)
 
 const Dashboard = () => {
+    const { setNavigation } = useNavigationStore();
+
+    useEffect(() => {
+        setNavigation({
+            title: 'Dashboard',
+            status: 'Online',
+            breadcrumb: ['Home'],
+            isBackButtonVisible: false,
+        });
+    }, [setNavigation]);
+
     const [activeTab, setActiveTab] = useState("overall")
     const [activeKarcoTab, setActiveKarcoTab] = useState("videos")
     const dashboardAssets: DashboardAssets[] = [
@@ -114,11 +126,11 @@ const Dashboard = () => {
     ]
 
     const assignedTokenRequestDetails = [
-        {id: 1, text: 'Requested 50 tokens from Mr. Mahesh Sathye, UID 120045 | 11.45Am', isAssign: true},
-        {id: 2, text: 'Requested 50 tokens from Mr. Purvesh Sadhu, UID 120045 | 10.55Am', isAssign: true},
-        {id: 3, text: 'Requested for 100 tokens sent - CTR1213 | 10.34Am', isAssign: false},
-        {id: 4, text: 'Requested for 150 tokens sent - CTR1213 | 09.56Am', isAssign: false},
-        {id: 5, text: 'Recall 100 Tokens form Jay Mehta - CTR1177 | 09.13 Am ', isAssign: false},
+        { id: 1, text: 'Requested 50 tokens from Mr. Mahesh Sathye, UID 120045 | 11.45Am', isAssign: true },
+        { id: 2, text: 'Requested 50 tokens from Mr. Purvesh Sadhu, UID 120045 | 10.55Am', isAssign: true },
+        { id: 3, text: 'Requested for 100 tokens sent - CTR1213 | 10.34Am', isAssign: false },
+        { id: 4, text: 'Requested for 150 tokens sent - CTR1213 | 09.56Am', isAssign: false },
+        { id: 5, text: 'Recall 100 Tokens form Jay Mehta - CTR1177 | 09.13 Am ', isAssign: false },
     ]
 
     // Chart data for entity completion

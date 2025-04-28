@@ -1,8 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../../../styles/dashboard/company-profile.css';
+import { useNavigationStore } from '../../../libs/store/navigationStore';
 
 const CompanyProfile = () => {
+  const { setNavigation } = useNavigationStore();
   const [isEditing, setIsEditing] = useState(false)
+
+  useEffect(() => {
+    setNavigation({
+      title: 'Company Profile',
+      status: null,
+      breadcrumb: [],
+      isBackButtonVisible: true,
+    });
+  }, [setNavigation]);
 
   const toggleEditing = () => {
     setIsEditing(!isEditing)
